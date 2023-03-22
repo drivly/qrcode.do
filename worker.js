@@ -6,8 +6,10 @@ export default {
 
     const qrcode = await QRCode.create('https:/' + pathname)
     const svg = await qrcode.toString('https:/' + pathname, { type: 'svg' })
+    const utf = await qrcode.toString('https:/' + pathname, { type: 'utf8' })
+    const terminal = await qrcode.toString('https:/' + pathname, { type: 'terminal' })
     
-    return new Response(JSON.stringify({qrcode, svg}), {})
+    return new Response(JSON.stringify({qrcode, svg, utf, terminal}), {})
   }
 }
 

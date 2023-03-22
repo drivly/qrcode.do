@@ -4,12 +4,9 @@ export default {
   fetch: async (req, env) => {
     const { user, hostname, pathname, rootPath, pathSegments, query } = await env.CTX.fetch(req).then(res => res.json())
 
-    const qrcode = await QRCode.create('https:/' + pathname)
     const svg = await QRCode.toString('https:/' + pathname, { type: 'svg' })
-    const utf = await QRCode.toString('https:/' + pathname, { type: 'utf8' })
-    const terminal = await QRCode.toString('https:/' + pathname, { type: 'terminal' })
     
-    return new Response(JSON.stringify({qrcode, svg, utf, terminal}), {})
+    return new Response(svg, {headers})
   }
 }
 

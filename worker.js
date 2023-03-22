@@ -6,7 +6,7 @@ export default {
 
     const svg = await QRCode.create('https:/' + pathname).toString({ type: 'svg' })
     
-    return new Response(svg, {})
+    return new Response(JSON.stringify(svg), {})
   }
 }
 

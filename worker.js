@@ -6,6 +6,10 @@ export default {
 
     const svg = QRCode.create('https:/' + pathname).toString({ type: 'svg' })
     
-    return new Response(svg)
+    return new Response(svg, {headers})
   }
+}
+
+const headers = {
+  'content-type': 'image/svg+xml' 
 }
